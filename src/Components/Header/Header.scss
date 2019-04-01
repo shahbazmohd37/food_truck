@@ -1,0 +1,37 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #2de2da;
+    color: white;
+    height: 4em;
+    div {
+        position: relative;
+        .left-menu {
+            height: fit-content;
+            position: absolute;
+            top: 25%;
+            width: 100%;
+            font-size: 1.4em;
+            .icon-menu{
+                 font-size: 1.3em;
+            }
+            .title {
+                font-weight: bold;
+            }
+        }
+    }
+    .right-menu {
+        span {
+            float: right;
+            margin-right: 2vw;
+            margin-top: 1em;
+            input {
+                height: 1.4em;
+                width: 16vw;
+                margin-right: 1em;
+            }
+        }
+    }
+}

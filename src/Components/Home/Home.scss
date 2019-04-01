@@ -1,0 +1,65 @@
+.home {
+    background: #fbf9f9cf;
+    .search-location {
+        margin-top: 7%;
+        position: relative;
+        input {
+            width: 100%;
+            border-radius: 0.7em;
+            padding: 4px;
+            color: grey;
+            border: 0.1rem solid #b0b0f3;
+        }
+        i {
+            position: absolute;
+            display: block;
+            right: 6%;
+            top: 11%;
+        }
+        #suggestion-box {
+            display: none;
+            width: 68%;
+            background: white;
+            border: 1px solid #e8e3e3;
+            position: absolute;
+            z-index: 100;
+            top: 33px;
+            min-height: 4em;        }
+    }
+    .container {
+        margin-top: 2%;
+        border: 0.02em solid #ece9e9;
+        height: 70vh;
+        .truck-detail-container{
+            max-height: 70vh;
+            overflow: auto;
+        }
+        .truck-detail {
+            background: #59a6f9;
+            color: white;
+            .divider {
+                width: 100%;
+                height: 0.1em;
+                background: white;
+                margin-top: 2%;
+            }
+        }
+    }
+    @media (max-width: 980px) {
+        .search-location {
+            margin-top: 10%;
+        }
+        body {
+            font-size: 1em;
+        }
+        .map-container {
+            height: 70vh;
+        }
+        .container {
+            height: fit-content;
+        }
+    }
+}
+.infoBox {
+    width: 27em !important;
+}
