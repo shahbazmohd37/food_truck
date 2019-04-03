@@ -11,7 +11,6 @@ class TruckDetails extends Component {
    alert(`Food Description : \n  ${item.fooditems}`);
   }
   render() {
-    console.log('Truck details component');
     if (typeof this.props.truckData === 'undefined' || this.props.truckData.length === 0) {
       return (
              <div className="row truck-detail m-0 p-1">
