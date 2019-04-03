@@ -4,8 +4,14 @@ export function getTruckData(data) {
     return {type: GETTRUCKDATA, data: data}
 }
 
-export function getTruckDataByDistance(data, currentLocation) {
-    let currLat = currentLocation.lat;
+export function getTruckDataByDistance(url, currentLocation) {
+  return (dispatch) => {
+    // console.log(items);
+    fetch(url, {mode: 'cors'})
+    .then(response => response.json())
+    .then((data) => {
+      console.log('after fetching data');
+      let currLat = currentLocation.lat;
     let currLong = currentLocation.lng;
     let newData = [];
   for (let i = 0; i < data.length; i++) {
@@ -15,9 +21,9 @@ export function getTruckDataByDistance(data, currentLocation) {
             newData.push(data[i]);
       }
   }
-  console.log('in dispatching truck data');
-  console.dir(newData);
-  return getTruckData(newData);
+      dispatch(getTruckData(newData));
+    }).catch(error => console.log('error occured ' + error)); 
+  };   
 }
 
 function degreesToRadians(degrees) {
