@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getTruckDataByDistance} from '../../action/index';
-import mockTruckData from '../../mock/mock.json';
 import GoogleMap from '../GoogleMaps/googleMap';
 import TruckDetails from '../TruckDetails/TruckDetail';
+import urlConstants from '../../constants/urlConstants';
 import './Home.scss';
 
 class Home extends Component{
@@ -21,11 +21,10 @@ class Home extends Component{
       }
 
     componentDidMount(){
-        this.props.getTruckDetails(mockTruckData, this.state.currentLocation);
+        this.props.getTruckDetails(urlConstants.truck, this.state.currentLocation);
     }
 
     handleChange(event) {
-        console.log('handle change called ' + event.target.value);
         const lat = +event.target.value.split(',')[0];
         const lng = +event.target.value.split(',')[1];
         this.setState({
@@ -45,7 +44,7 @@ class Home extends Component{
         document.getElementById('suggestion-box').style.display = 'none';
         // Fetching truck data for radius 1 km 
         // can take the distance as input from user and change function in action to include distance
-        this.props.getTruckDetails(mockTruckData, this.state.currentLocation);
+        this.props.getTruckDetails(urlConstants.truck, this.state.currentLocation);
     }
 
     getLocation(event) {
@@ -70,14 +69,17 @@ class Home extends Component{
           }
           // Fetching truck data for radius 1 km 
           // can take the distance as input from user and change function in action to include distance
-          this.props.getTruckDetails(mockTruckData, location);
+          this.props.getTruckDetails(urlConstants.truck, location);
           
     }
    render(){
-       console.log('In render of HOme component');
-       console.dir(this.props.truckData);
-       console.log('state valueis ');
-       console.dir(this.state);
+       if (typeof this.props.truckData === 'undefined' || this.props.truckData.length === 0) {
+           return (
+               <div className="row w-100 loader-container">
+                 <div className="loader" />
+               </div>
+           );
+       }
       return(
          <div className="home">
             <div className="row" >
@@ -119,7 +121,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getTruckDetails: (data, currentLocation) => {dispatch(getTruckDataByDistance(data, currentLocation))}
+        getTruckDetails: (url, currentLocation) => {dispatch(getTruckDataByDistance(url, currentLocation))}
     }
 }
 
